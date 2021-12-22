@@ -45,8 +45,9 @@ CREATE SCHEMA IF NOT EXISTS src_survey;
  CREATE TABLE IF NOT EXISTS src_survey.info_detail
 (
     id_info_detail INT PRIMARY KEY NOT NULL,
-    valeur FLOAT,
-    type_valeur VARCHAR(100), -- nomenclature 1 : double, 2 : entier, 3 : pourcentage, ... 
+    valeur FLOAT NOT NULL,
+    type_valeur VARCHAR(100) NOT NULL, -- nomenclature 1 : double, 2 : entier, 3 : pourcentage, ... 
+    unite VARCHAR(255) NOT NULL,
     info_commentaire VARCHAR(255)
 );
 
@@ -62,7 +63,7 @@ CREATE SCHEMA IF NOT EXISTS src_survey;
     id_fiabilite INT NOT NULL,
     protocole VARCHAR(255),
     methode VARCHAR(255),
-    source_jdd VARCHAR(255),
+    source_jdd VARCHAR(255), -- INT NOT NULL
     autre_info TEXT -- format JSON
 );
 
@@ -75,6 +76,19 @@ CREATE SCHEMA IF NOT EXISTS src_survey;
     Indicateur VARCHAR(100)
 );
 
+
+-- GRAPHIQUE_INFO
+---------------------------------------------------
+ CREATE TABLE IF NOT EXISTS src_survey.info_graph
+(
+    id_graph INT PRIMARY KEY NOT NULL,
+    id_jdd INT NOT NULL, --id_jdd VARCHAR(255),
+    unite VARCHAR(255),
+    type_graph VARCHAR(255),
+    phenologie PHENOLOGY_PERIOD, 
+    information_graph VARCHAR(255),
+    description VARCHAR(255)
+);
 
 -- AJOUT DES CONTRAINTES ET CLES ETRANGERES
 --------------------------------------------------
