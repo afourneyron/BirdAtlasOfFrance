@@ -71,3 +71,6 @@ where ig2.unite =  tf.unite
 --and date_part( 'year', tf.date_debut) = 2019
 group by tf.source_jdd, ig2.id_jdd , ig2.unite , ig2.type_graph , ra.geom, ra.area_name , tf.unite, tf.date_debut, tf.date_fin );
 		
+
+-- pour permettre à la vue de ce fair erequeter par l'API : 
+grant select on src_survey.vm_graph_information to odfapp;
